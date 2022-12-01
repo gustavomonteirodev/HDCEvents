@@ -4,13 +4,14 @@
 
 @section('content')
 
-<h1>oiiiii! </h1>
+<h1>  Frente </h1>
 <a href="/contact" class="relative flex items-top justify-center">ir para contato </a>
 @if (10 > 5)
 <p>A condição é true </p>
 @endif
 <p>Meu nome é {{$name}}</p>
 <p>Tenho {{$age}} anos</p>
+<p>Meu celular é um {{$smartphone}} de 2022</p>
 
 @if ($name == 'Pedro')
 <p>Meu nome é Pedro</p>
