@@ -3,17 +3,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\Models\Event;
 
 class EventController extends Controller
 {
+
     public function index() {
+
         $events = Event::all();
 
         return view('welcome',['events' => $events]);
+
     }
 
-    public function create () {
+    public function create() {
         return view('events.create');
     }
 
@@ -28,19 +32,16 @@ class EventController extends Controller
         $event->description = $request->description;
         $event->items = $request->items;
 
-        // o formulario entende quando enviamos a requisicao, em string
-        // precisamos converter em array, por meio do cast 
-
-        // Image Upload{}
-        if($request->hasFile('image') && $request->file('image')->isValid()){
+        // Image Upload
+        if($request->hasFile('image') && $request->file('image')->isValid()) {
 
             $requestImage = $request->image;
 
             $extension = $requestImage->extension();
 
-            $imageName = md5($requestImage->getClientOriginalName() . strtotime('now')) . "." . $extension;
+            $imageName = md5($requestImage->getClientOriginalName() . strtotime("now")) . "." . $extension;
 
-            $request->image->move(public_path('img/events'), $imageName);
+            $requestImage->move(public_path('img/events'), $imageName);
 
             $event->image = $imageName;
 
@@ -49,11 +50,12 @@ class EventController extends Controller
         $event->save();
 
         return redirect('/')->with('msg', 'Evento criado com sucesso!');
+
     }
 
     public function show($id) {
 
-        $event = Event::findorFail($id);
+        $event = Event::findOrFail($id);
 
         return view('events.show', ['event' => $event]);
 
