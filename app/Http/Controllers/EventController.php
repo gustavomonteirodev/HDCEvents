@@ -28,6 +28,9 @@ class EventController extends Controller
         $event->description = $request->description;
         $event->items = $request->items;
 
+        // o formulario entende quando enviamos a requisicao, em string
+        // precisamos converter em array, por meio do cast 
+
         // Image Upload{}
         if($request->hasFile('image') && $request->file('image')->isValid()){
 
