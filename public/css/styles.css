@@ -199,6 +199,12 @@ header {
   display: inline-block;
 }
 
+.img-preview {
+  width:100px;
+  border-radius: 15px;
+
+}
+
 /* footer */
 footer {
   text-align: center;
